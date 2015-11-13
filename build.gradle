@@ -1,0 +1,44 @@
+['java', 'eclipse', 'maven'].each {
+	apply plugin: it
+}
+
+version = '1.0'
+group = 'com.milad.api.graph'
+
+def toolsVersion = '1.0'
+
+// JDK 8
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+//Directory Structure
+sourceSets {
+	main.java.srcDir 'src/main/java'
+	test.java.srcDir 'src/test/java'
+}
+
+repositories {
+	mavenLocal()
+    mavenCentral()    
+}
+
+dependencies {   
+    
+    compile 'org.slf4j:slf4j-api:1.7.12'
+    
+    compile group:'com.milad.api', name: 'Tools' , version : toolsVersion
+    
+    testCompile 'junit:junit:4.12'
+}
+
+jar {
+	//destinationDir = new File("../jarFiles")
+	manifest {
+		attributes(
+			"BuildedBy" : "Gradle 2.7",
+			"Author" : "Milad Amery",
+			"ProjectTitle" : "MiladAmery-Graph-Api",            
+			"projectVersion" : version
+		)
+	}
+}
